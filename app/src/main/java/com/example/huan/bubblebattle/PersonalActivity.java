@@ -72,6 +72,7 @@ public class PersonalActivity extends AppCompatActivity
                         text = "join game! ";
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        GoToGamingActivity();
                         break;
                     case R.id.table_watch_game:
                         text = "join game! ";
@@ -135,6 +136,13 @@ public class PersonalActivity extends AppCompatActivity
         button.setOnClickListener(onClickListener);
         button = (ImageButton) findViewById(R.id.table16);
         button.setOnClickListener(onClickListener);
+    }
+
+    private void GoToGamingActivity() {
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, GamingActivity.class);
+        startActivity(intent);
+        Log.d(PersonalActivity.class.toString(), "Jumping to gaming activity");
     }
 
     @Override

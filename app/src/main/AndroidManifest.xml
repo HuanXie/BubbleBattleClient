@@ -26,9 +26,9 @@
         <activity
             android:name=".PersonalActivity"
             android:label="@string/title_activity_personal"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.example.huan.bubblebattle.LoginActivity">
-        </activity>
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".GamingActivity"></activity>
     </application>
 
 </manifest>
