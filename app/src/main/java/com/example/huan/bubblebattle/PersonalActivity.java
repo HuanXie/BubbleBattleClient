@@ -1,10 +1,13 @@
 package com.example.huan.bubblebattle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PersonalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +53,88 @@ public class PersonalActivity extends AppCompatActivity
 
         Log.d("Stupid", "inside personal activity");
         Intent intent = getIntent();
-        String userName = intent.getStringExtra(LoginActivity.USER_NAME);
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText("Hello " + userName);
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        layout.addView(textView);
+        addListenersForTableImages();
+    }
+
+    private void addListenersForTableImages() {
+        final PopupMenu.OnMenuItemClickListener menuItemClickListener = new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                boolean handled = false;
+                Context context = getApplicationContext();
+                CharSequence text;
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast;
+                switch (item.getItemId()) {
+                    case R.id.table_join_game:
+                        handled = true;
+                        text = "join game! ";
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        break;
+                    case R.id.table_watch_game:
+                        text = "join game! ";
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        handled = true;
+                        break;
+                    case R.id.table_show_profile:
+                        text = "shwo profile! ";
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        handled = true;
+                        break;
+                    default:
+                        break;
+                }
+                return handled;
+            }
+        };
+
+        final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(PersonalActivity.this, v);
+                popup.setOnMenuItemClickListener(menuItemClickListener);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.table_popup, popup.getMenu());
+                popup.show();
+            }
+        };
+
+        ImageButton button = (ImageButton) findViewById(R.id.table1);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table2);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table3);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table4);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table5);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table6);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table7);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table8);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table9);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table10);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table11);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table12);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table13);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table14);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table15);
+        button.setOnClickListener(onClickListener);
+        button = (ImageButton) findViewById(R.id.table16);
+        button.setOnClickListener(onClickListener);
     }
 
     @Override

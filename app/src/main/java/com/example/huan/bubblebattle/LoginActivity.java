@@ -3,6 +3,7 @@ package com.example.huan.bubblebattle;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -30,6 +31,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,9 +157,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -186,19 +192,122 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // the form of input is valid
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-
-            Intent intent = new Intent(this, PersonalActivity.class);
+            Context context = getApplicationContext();
+            Intent intent = new Intent(context, PersonalActivity.class);
             intent.putExtra(USER_NAME, "johnny");
             startActivity(intent);
             Log.d("Stupid", "Jumping to personal activity");
+            /*RequestQueue queue = Volley.newRequestQueue(this);
+            String url ="http://192.168.1.72:8080/BubbleBattle/login/"+ email + "/" + password;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("debug", response);
+                           if(true) //login sucess
+                            {
+                                Context context = getApplicationContext();
+                                Intent intent = new Intent(context, PersonalActivity.class);
+                                intent.putExtra(USER_NAME, "johnny");
+                                startActivity(intent);
+                                Log.d("Stupid", "Jumping to personal activity");
+                            }
+                            else //login failed
+                            {
+
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Connection error! ";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+*/
         }
     }
+    /*private void attemptRegister() {
 
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // the form of input is valid
+            showProgress(true);
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url ="192.168.1.72:8080/BubbleBattle/register/"+ email + "/" + password;
+            StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            if(response is true) //login sucess
+                            {
+                                Context context = getApplicationContext();
+                                Intent intent = new Intent(context, PersonalActivity.class);
+                                intent.putExtra(USER_NAME, "johnny");
+                                startActivity(intent);
+                                Log.d("Stupid", "Jumping to personal activity");
+                            }
+                            else //login failed
+                            {
+
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Connection error! ";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+
+
+        }
+    }*/
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
