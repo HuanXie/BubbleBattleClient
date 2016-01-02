@@ -3,7 +3,6 @@ package com.example.huan.bubblebattle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
@@ -32,15 +31,6 @@ public class PersonalActivity extends AppCompatActivity
         setContentView(R.layout.activity_personal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,10 +71,10 @@ public class PersonalActivity extends AppCompatActivity
                         handled = true;
                         break;
                     case R.id.table_show_profile:
-                        text = "shwo profile! ";
+                        text = "show profile! ";
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
-                        handled = true;
+                        GotoProfileActivity();
                         break;
                     default:
                         break;
@@ -183,22 +173,34 @@ public class PersonalActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.mypage) {
+            GoToMyPageamingActivity();
+        } else if (id == R.id.baggage) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.market) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_help) {
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void GoToMyPageamingActivity() {
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, MyPageActivity.class);
+        startActivity(intent);
+        Log.d(PersonalActivity.class.toString(), "Jumping to MyPage activity");
+    }
+
+    private void GotoProfileActivity() {
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, ProfileActivity.class);
+        startActivity(intent);
+        Log.d(PersonalActivity.class.toString(), "Jumping to Profile activity");
     }
 }

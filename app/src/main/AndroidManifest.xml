@@ -27,8 +27,13 @@
             android:name=".PersonalActivity"
             android:label="@string/title_activity_personal"
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".GamingActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GamingActivity" />
+        <activity
+            android:name=".MyPageActivity"
+            android:label="@string/title_activity_my_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

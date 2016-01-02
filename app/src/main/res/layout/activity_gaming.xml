@@ -11,37 +11,19 @@
     tools:context="com.example.huan.bubblebattle.GamingActivity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/right"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/left"
-        android:layout_toEndOf="@+id/left" />
-
-    <android.support.design.widget.FloatingActionButton
         android:id="@+id/shoot"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_above="@+id/shooter"
         android:layout_alignParentEnd="true" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/left"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|end"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:id="@+id/shooter"
         android:scaleType="fitXY"
-        android:src="@mipmap/green_bubble"
+        android:src="@mipmap/fish"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/left"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

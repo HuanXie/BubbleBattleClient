@@ -22,4 +22,5 @@
     <string name="table_join_game">Join Game</string>
     <string name="table_watch_game">Watch Game</string>
     <string name="table_show_profile">Show player profile</string>
+    <string name="title_activity_my_page">MyPageActivity</string>
 </resources>
