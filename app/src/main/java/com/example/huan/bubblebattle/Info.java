@@ -6,9 +6,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-/**
- * Created by huan on 2016/1/2.
- */
 public class Info {
     public String title;
     public String value;
