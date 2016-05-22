@@ -33,6 +33,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huan.bubblebattle.Networking.WebSocketUtility;
+
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
@@ -49,7 +51,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, MessageHandler {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -69,12 +71,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private WebSocketClient mWebSocketClient;
+    //private WebSocketClient mWebSocketClient;
     private boolean debug = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WebSocketUtility.setMessageHandler(this); //set the handler so that this activity handleMessage() will be called
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -206,7 +209,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (debug) {
                 goToPersonalActivity();
             } else {
-              initWebSocket();
+              //initWebSocket();
               loginOrRegisterToServer(email, password);
             }
         }
@@ -222,9 +225,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
             loginReq.put("email", email);
             loginReq.put("password", password);
-            boolean connected = mWebSocketClient.connectBlocking();
+            //boolean connected = mWebSocketClient.connectBlocking();
+            WebSocketClient client = WebSocketUtility.getClient();
+            boolean connected = client.connectBlocking();
             if (connected) {
-                mWebSocketClient.send(loginReq.toString());
+                client.send(loginReq.toString());
             } else {
                 Log.e(logCat, "websocket connection failed");
             }
@@ -233,6 +238,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /*
     private void initWebSocket() {
         if (mWebSocketClient == null) {
             URI uri;
@@ -273,9 +279,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             };
         }
-    }
+    }*/
 
-    private void handleMessage(String s) {
+    @Override
+    public void handleMessage(String s) {
         Log.d(logCat, "handling message " + s);
         try {
             JSONObject json = new JSONObject(s);
@@ -285,11 +292,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 goToPersonalActivity();
             } else {
                 //stay in this activity and clear the email/password text boxes
+                showProgress(false);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     private void showMessageDialog(String msg) {
@@ -302,19 +309,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void goToPersonalActivity() {
         Context context = getApplicationContext();
         Intent intent = new Intent(context, PersonalActivity.class);
-        intent.putExtra(USER_NAME, "johnny");
         startActivity(intent);
         Log.d(logCat, "Jumping to personal activity");
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 2;
     }
 
     /**

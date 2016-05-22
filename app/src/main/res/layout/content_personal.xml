@@ -17,97 +17,97 @@
     android:orientation="horizontal">
 
     <ImageButton
-        android:id="@+id/table1"
+        android:id="@+id/table0"
         android:layout_column="0"
+        android:scaleType="fitXY"
+        android:src="@mipmap/green_bubble" />
+
+    <ImageButton
+        android:id="@+id/table1"
+        android:layout_column="1"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table2"
-        android:layout_column="1"
+        android:layout_column="2"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table3"
-        android:layout_column="2"
+        android:layout_column="3"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table4"
-        android:layout_column="3"
+        android:layout_column="0"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table5"
-        android:layout_column="0"
+        android:layout_column="1"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table6"
-        android:layout_column="1"
+        android:layout_column="2"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table7"
-        android:layout_column="2"
+        android:layout_column="3"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table8"
-        android:layout_column="3"
+        android:layout_column="0"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table9"
-        android:layout_column="0"
+        android:layout_column="1"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table10"
-        android:layout_column="1"
+        android:layout_column="2"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
         android:id="@+id/table11"
-        android:layout_column="2"
-        android:scaleType="fitXY"
-        android:src="@mipmap/green_bubble" />
-
-    <ImageButton
-        android:id="@+id/table12"
         android:layout_column="3"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
-        android:id="@+id/table13"
+        android:id="@+id/table12"
         android:layout_column="0"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
-        android:id="@+id/table14"
+        android:id="@+id/table13"
         android:layout_column="1"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
-        android:id="@+id/table15"
+        android:id="@+id/table14"
         android:layout_column="2"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />
 
     <ImageButton
-        android:id="@+id/table16"
+        android:id="@+id/table15"
         android:layout_column="3"
         android:scaleType="fitXY"
         android:src="@mipmap/green_bubble" />

@@ -21,9 +21,17 @@
     <ImageButton
         android:id="@+id/shooter"
         android:scaleType="fitXY"
-        android:src="@mipmap/fish"
+        android:src="@mipmap/pink"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true" />
+    <TextView
+        android:id="@+id/blood"
+        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/shoot"
+        android:layout_alignEnd="@+id/shoot"
+        android:layout_marginBottom="55dp" />
 </RelativeLayout>
